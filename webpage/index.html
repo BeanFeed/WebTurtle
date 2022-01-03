@@ -3,7 +3,6 @@
     <head>
         <script type="text/javascript">
             // doesn't work "const ws = require('ws');"
-            window.onLoad = function (){
                 const Forward = document.getElementById("f");
                 const Back = document.getElementById("b");
                 const Left = document.getElementById("l");
@@ -13,12 +12,11 @@
                 const dis = document.getElementById("dis");
                 const turtid = document.getElementById("turtid");
                 const turtpass = document.getElementById("turtpass");
-
-                Connect.onClick = function(){
-                    let conurl = urll.value;
-                    console.log("yes");
+                
+                con.onClick = function(){
+                    document.getElementById("dis").innerHTML = "conurl";
                     if (conurl == null) return
-                    let socket = new ws(conurl);
+                    let socket = new WebSocket(conurl);
                     dis.text = conurl
                     Forward.onClick = function(){
                         socket.send('f')
@@ -27,11 +25,6 @@
                 }  
                 
 
-
-
-
-
-            }
 
         </script>
         <link rel="stylesheet" href="style.css">
@@ -45,7 +38,7 @@
         <button id="r">Right</button>
         <br>
 
-        <form>
+        
             Turtle Id:
             <input type="number" id="turtid">
             <br>
@@ -55,7 +48,7 @@
             <button id="con">Connect</button>
             <button id="dis">Disconnect</button>
             
-        </form>
+        
 
     </body>
 </html>
