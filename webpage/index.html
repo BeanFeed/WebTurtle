@@ -18,11 +18,14 @@
                         let conurl = urll.value;
                         if (conurl == null) return
                         let socket = new WebSocket(conurl);
-                        constat.innerHTML = socket.readyStatus;
-                        
+                        constatus = socket.readyStatus;
+                        console.log(constatus);
+                        if (constatus == WebSocket.OPEN) {
+                            constat.innerHTML = 'Connected';
+                        }
                         Forward.onclick = function(){
                             socket.send('f')
-
+                            console.log('f');
                         }
                         Back.onclick = function () {
                             socket.send('b');   
@@ -56,18 +59,17 @@
         <br>
 
         
-            Turtle Id:
-            <input type="number" id="turtid">
-            <br>
-            Turtle password: <input type = "text" id = "turtpass">
-            <br>
-            Url: <input type="text" id="url">
-            <button id="con">Connect</button>
-            <button id="dis">Disconnect</button>
-            Connection Status: 
-            <p id = "constat">Not Connected</p>
-            
-            
+        Turtle Id:
+        <input type="number" id="turtid">
+        <br>
+        Turtle password: <input type = "text" id = "turtpass">
+        <br>
+        Url: <input type="text" id="url">
+        <button id="con">Connect</button>
+        <button id="dis">Disconnect</button>
+        <br>
+        Connection Status:
+        <p id = "constat">Not connected</p>
         
 
     </body>
