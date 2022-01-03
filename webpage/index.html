@@ -13,15 +13,32 @@
                     const dis = document.getElementById("dis");
                     const turtid = document.getElementById("turtid");
                     const turtpass = document.getElementById("turtpass");
-                
+                    const constat = document.getElementById("constat");
                 
                     con.onclick = function(){
                         let conurl = urll.value;
                         if (conurl == null) return
                         let socket = new WebSocket(conurl);
-                        Forward.onClick = function(){
+                        constat.innerHTML = socket.readyStatus;
+                        
+                        Forward.onclick = function(){
                             socket.send('f')
 
+                        }
+                        Back.onclick = function () {
+                            socket.send('b');   
+                        }
+                        
+                        Left.onclick = function () {
+                            socket.send('l');   
+                        }
+                        
+                        Right.onclick = function () {
+                            socket.send('r');   
+                        }
+                        
+                        dis.onclick = function () {
+                            socket.close();   
                         }
                     }  
                 }
@@ -48,6 +65,9 @@
             Url: <input type="text" id="url">
             <button id="con">Connect</button>
             <button id="dis">Disconnect</button>
+            Connection Status: 
+            <p id = "constat">Not Connected</p>
+            
             
         
 
