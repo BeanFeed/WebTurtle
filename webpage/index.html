@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script type="text/javascript">
+            const ws = require('ws');
+            window.onLoad = function (){
+                const Forward = document.getElementById("f");
+                const Back = document.getElementById("b");
+                const Left = document.getElementById("l");
+                const Right = document.getElementById("r");
+                const url = document.getElementById("url");
+                const con = document.getElementById("con");
+                const dis = document.getElementById("dis");
+                const turtid = document.getElementById("turtid");
+                const turtpass = document.getElementById("turtpass");
+
+                Connect.onClick = function(){
+                    let conurl = url.value;
+                    if (conurl == null) return
+                    
+                }  
+                
+
+
+
+
+
+            }
+
+        </script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body id="center">
+        <h1>Turtle Control Page</h1>
+        <button id="f">Forward</button>
+        <br>
+        <button id="l">Left</button>
+        <button id="b">Back</button>
+        <button id="r">Right</button>
+        <br>
+
+        <form>
+            Turtle Id:
+            <input type="number" id="turtid">
+            <br>
+            Turtle password: <input type = "text" id = "turtpass">
+            <br>
+            Url: <input type="text" id="url">
+            <button id="con">Connect</button>
+            <button id="dis">Disconnect</button>
+            
+        </form>
+
+    </body>
+</html>
