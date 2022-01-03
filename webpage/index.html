@@ -3,22 +3,22 @@
     <head>
         <script type="text/javascript">
             // doesn't work "const ws = require('ws');"
-                const Forward = document.getElementById("f");
-                const Back = document.getElementById("b");
-                const Left = document.getElementById("l");
-                const Right = document.getElementById("r");
-                const urll = document.getElementById("url");
-                const con = document.getElementById("con");
-                const dis = document.getElementById("dis");
-                const turtid = document.getElementById("turtid");
-                const turtpass = document.getElementById("turtpass");
+                window.onload = function() {
+                    const Forward = document.getElementById("f");
+                    const Back = document.getElementById("b");
+                    const Left = document.getElementById("l");
+                    const Right = document.getElementById("r");
+                    const urll = document.getElementById("url");
+                    const con = document.getElementById("con");
+                    const dis = document.getElementById("dis");
+                    const turtid = document.getElementById("turtid");
+                    const turtpass = document.getElementById("turtpass");
                 
-                window.onLoad = () => {
-                    con.onClick = function(){
-                        document.getElementById("dis").innerHTML = "conurl";
+                
+                    con.onclick = function(){
+                        let conurl = urll.value;
                         if (conurl == null) return
                         let socket = new WebSocket(conurl);
-                        dis.text = conurl
                         Forward.onClick = function(){
                             socket.send('f')
 
