@@ -23,25 +23,36 @@
                         if (constatus == WebSocket.OPEN) {
                             constat.innerHTML = 'Connected';
                         }
+                        let msg = {};
                         Forward.onclick = function(){
-                            socket.send('f')
-                            console.log('f');
+                            msg[0] = "f";
+                            socket.send("f");
+                            console.log(msg[0]);
                         }
                         Back.onclick = function () {
-                            socket.send('b');   
+                            msg[0] = "b";
+                            socket.send(msg[0]);
+                            console.log(msg[0]);  
                         }
                         
                         Left.onclick = function () {
-                            socket.send('l');   
+                            msg[0] = "l";
+                            socket.send(msg[0]);
+                            console.log(msg[0]);   
                         }
                         
                         Right.onclick = function () {
-                            socket.send('r');   
+                            msg[0] = "r";
+                            socket.send(msg[0]);
+                            console.log(msg[0]);  
                         }
                         
                         dis.onclick = function () {
                             socket.close();   
                         }
+                         socket.onmessage = function (message) {
+                             console.log(message);
+                         }
                     }  
                 }
 
