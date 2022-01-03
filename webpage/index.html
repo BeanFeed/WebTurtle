@@ -13,17 +13,18 @@
                 const turtid = document.getElementById("turtid");
                 const turtpass = document.getElementById("turtpass");
                 
-                con.onClick = function(){
-                    document.getElementById("dis").innerHTML = "conurl";
-                    if (conurl == null) return
-                    let socket = new WebSocket(conurl);
-                    dis.text = conurl
-                    Forward.onClick = function(){
-                        socket.send('f')
+                window.onLoad = () => {
+                    con.onClick = function(){
+                        document.getElementById("dis").innerHTML = "conurl";
+                        if (conurl == null) return
+                        let socket = new WebSocket(conurl);
+                        dis.text = conurl
+                        Forward.onClick = function(){
+                            socket.send('f')
 
-                    }
-                }  
-                
+                        }
+                    }  
+                }
 
 
         </script>
