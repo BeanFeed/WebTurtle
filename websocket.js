@@ -1,6 +1,6 @@
-import ws from 'websocket';
+const ws = require('ws');
 
-const wss = new ws.server({port:80});
+const wss = new ws.Server({port:80});
 
 wss.on('Connection', function(wsss){
     wsss.on('message',function(message){

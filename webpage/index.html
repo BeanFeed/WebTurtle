@@ -17,7 +17,12 @@
                 Connect.onClick = function(){
                     let conurl = url.value;
                     if (conurl == null) return
-                    
+                    let socket = new ws(conurl);
+                    console.log(conurl);
+                    Forward.onClick = function(){
+                        socket.send('f')
+
+                    }
                 }  
                 
 
