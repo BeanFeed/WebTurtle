@@ -1,20 +1,25 @@
 const websocket = require('ws');
 
-const wss = new ws.Server({port:8080});
+wss = new websocket.Server({ port:80 });
 
-wss.on('Connection', function connection(wsss){
+function broadcast(message){
+    wss.clients.forEach(function(client) {
+        client.send(message);
+      });
+}
+wss.on('connection', function connection(ws){
     console.log('connected');
-    wsss.on('message',function(message){
-        console.log(message);
+    ws.on('message',function(msg){
+        console.log(msg.toString());
+        let message = msg.toString();
         if (message == 'f') {
-            wss.send(message);
-            
+            broadcast(message);
         }else if (message == 'b'){
-            wss.send(message);
+            broadcast(message);
         }else if (message == 'l'){
-            wss.send(message);
+            broadcast(message);
         }else if (message == 'r'){
-            wss.send(message);
+            broadcast(message);
         }else {return;}
     });
 })
