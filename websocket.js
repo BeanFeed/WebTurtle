@@ -1,25 +1,31 @@
 const websocket = require('ws');
 
-wss = new websocket.Server({ port:80 });
+wss = new websocket.Server({ port:8123 });
 
-function broadcast(message){
-    wss.clients.forEach(function(client) {
-        client.send(message);
-      });
-}
+
 wss.on('connection', function connection(ws){
     console.log('connected');
     ws.on('message',function(msg){
         console.log(msg.toString());
         let message = msg.toString();
         if (message == 'f') {
-            broadcast(message);
+            wss.broadcast("turtle.forward()");
         }else if (message == 'b'){
-            broadcast(message);
+            wss.broadcast("turtle.back()");
         }else if (message == 'l'){
-            broadcast(message);
+            wss.broadcast("turtle.turnLeft()");
         }else if (message == 'r'){
-            broadcast(message);
+            wss.broadcast("turtle.turnRight()");
+        }else if (message == 'u') {
+            wss.broadcast("turtle.up()");
+        }else if (message == 'd') {
+            wss.broadcast("turtle.down()")
         }else {return;}
     });
-})
+});
+
+wss.broadcast = function broadcast(message){
+    wss.clients.forEach(function(client) {
+        client.send(message);
+      });
+}

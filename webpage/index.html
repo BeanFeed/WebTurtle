@@ -13,46 +13,52 @@
                     const turtid = document.getElementById("turtid");
                     const turtpass = document.getElementById("turtpass");
                     const constat = document.getElementById("constat");
+                    const Up = document.getElementById("u");
+                    const Down = document.getElementById("d");
                 
                     con.onclick = function(){
                         let conurl = urll.value;
                         if (conurl == null) return
                         let socket = new WebSocket(conurl);
-                        constatus = socket.readyStatus;
-                        console.log(constatus);
-                        if (constatus == WebSocket.OPEN) {
-                            constat.innerHTML = 'Connected';
+                        socket.onopen = function (conurl) {
+                            console.log("Connected To " + urll.value);
+                            constat.innerHTML = "Connected";
                         }
+                        
                         let msg = {};
                         Forward.onclick = function(){
-                            msg[0] = "f";
                             socket.send("f");
-                            console.log(msg[0]);
+                            console.log("f");
                         }
                         Back.onclick = function () {
-                            msg[0] = "b";
-                            socket.send(msg[0]);
-                            console.log(msg[0]);  
+                            socket.send("b");
+                            console.log("b");  
                         }
                         
                         Left.onclick = function () {
-                            msg[0] = "l";
-                            socket.send(msg[0]);
-                            console.log(msg[0]);   
+                            socket.send("l");
+                            console.log("l");   
                         }
                         
                         Right.onclick = function () {
-                            msg[0] = "r";
-                            socket.send(msg[0]);
-                            console.log(msg[0]);  
+                            socket.send("r");
+                            console.log("r");  
                         }
                         
-                        dis.onclick = function () {
-                            socket.close();   
+                        Down.onclick = function () {
+                            socket.send("d");
+                            console.log("d");
                         }
-                         socket.onmessage = function (message) {
-                             console.log(message);
-                         }
+
+                        Up.onclick = function () {
+                            socket.send("u");
+                            console.log("u");
+                        }
+
+                        dis.onclick = function () {
+                            socket.close(); 
+                            constat.innerHTML = "Disconnected";  
+                        }
                     }  
                 }
 
@@ -62,7 +68,9 @@
     </head>
     <body id="center">
         <h1>Turtle Control Page</h1>
+        <button id="u">Up</button>
         <button id="f">Forward</button>
+        <button id="d">Down</button>
         <br>
         <button id="l">Left</button>
         <button id="b">Back</button>
@@ -80,7 +88,7 @@
         <button id="dis">Disconnect</button>
         <br>
         Connection Status:
-        <p id = "constat">Not connected</p>
+        <p id = "constat">Disconnected</p>
         
 
     </body>
