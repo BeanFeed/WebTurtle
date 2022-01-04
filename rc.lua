@@ -1,4 +1,3 @@
-os.loadAPI("wsmsg.lua")
 local tARGs = {...}
 local url = tARGs[1]
 local pass = tARGs[2]
@@ -15,6 +14,7 @@ end
 while ws do
 
     local args, x = ws.receive()
+    args = textutils.unserialise(args)
     print("ID: "..args[id].." Pass: "..args[pass])
     if args.id == os.getComputerID() and args.pass == pass then
         
