@@ -25,34 +25,48 @@
                             constat.innerHTML = "Connected";
                         }
                         
-                        let msg = {};
+                        let msg = {
+                            cmd: null,
+                            id: null,
+                            pass: null
+
+                        };
+                        msg.id = turtid.value;
+                        msg.pass = turtpass.value;
+
                         Forward.onclick = function(){
-                            socket.send("f");
-                            console.log("f");
+                            msg.cmd = "turtle.forward()"
+                            socket.send(JSON.stringify(msg));
+                            console.log(JSON.stringify(msg));
                         }
                         Back.onclick = function () {
-                            socket.send("b");
-                            console.log("b");  
+                            msg.cmd = "turtle.back()"
+                            socket.send(JSON.stringify(msg));
+                            console.log(JSON.stringify(msg));
                         }
                         
                         Left.onclick = function () {
-                            socket.send("l");
-                            console.log("l");   
+                            msg.cmd = "turtle.left()"
+                            socket.send(JSON.stringify(msg));
+                            console.log(JSON.stringify(msg));   
                         }
                         
                         Right.onclick = function () {
-                            socket.send("r");
-                            console.log("r");  
+                            msg.cmd = "turtle.right()"
+                            socket.send(JSON.stringify(msg));
+                            console.log(JSON.stringify(msg));  
                         }
                         
                         Down.onclick = function () {
-                            socket.send("d");
-                            console.log("d");
+                            msg.cmd = "turtle.down()"
+                            socket.send(JSON.stringify(msg));
+                            console.log(JSON.stringify(msg));
                         }
 
                         Up.onclick = function () {
-                            socket.send("u");
-                            console.log("u");
+                            msg.cmd = "turtle.up()"
+                            socket.send(JSON.stringify(msg));
+                            console.log(JSON.stringify(msg));
                         }
 
                         dis.onclick = function () {
