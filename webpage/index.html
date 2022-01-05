@@ -46,13 +46,13 @@
                         }
                         
                         Left.onclick = function () {
-                            msg.cmd = "turtle.left()"
+                            msg.cmd = "turtle.turnLeft()"
                             socket.send(JSON.stringify(msg));
                             console.log(JSON.stringify(msg));   
                         }
                         
                         Right.onclick = function () {
-                            msg.cmd = "turtle.right()"
+                            msg.cmd = "turtle.turnRight()"
                             socket.send(JSON.stringify(msg));
                             console.log(JSON.stringify(msg));  
                         }
