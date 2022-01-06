@@ -1,6 +1,18 @@
-const websocket = require('ws');
+const fs = require('fs');
+const https = require('https');
+const WebSocket = require('ws');
 
-wss = new websocket.Server({ port:8123 });
+const server = https.createServer({
+
+    cert: fs.readFileSync('Cert/cert.pem'),
+
+    key: fs.readFileSync('Cert/key.pem')
+});
+
+
+
+ wss = new WebSocket.Server({ server });
+
 
 
 wss.on('connection', function connection(ws){
@@ -16,3 +28,5 @@ wss.broadcast = function broadcast(message){
         client.send(message);
       });
 }
+
+server.listen(8123);
