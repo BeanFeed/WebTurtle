@@ -13,13 +13,11 @@ end
 while ws do
 
     local args, x = ws.receive()
-    print(args)
     args = textutils.unserialiseJSON(args)
-    print(args)
-    print(textutils.serialise(args))
-    print(" ")
-    print("ID: "..args.id.." Pass: "..args.pass.." Cmd: "..args.cmd)
     if args.id == id and args.pass == pass then
+        print(textutils.serialise(args))
+        print(" ")
+        print("ID: "..args.id.." Pass: "..args.pass.." Cmd: "..args.cmd)
         local func = loadstring(args.cmd)
         func()
     end
