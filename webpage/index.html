@@ -15,7 +15,10 @@
                     const constat = document.getElementById("constat");
                     const Up = document.getElementById("u");
                     const Down = document.getElementById("d");
-                
+                    const Place = document.getElementById("place");
+                    const Break = document.getElementById("break");
+                    const Attack = document.getElementById("attack");
+
                     con.onclick = function(){
                         let conurl = urll.value;
                         if (conurl == null) return
@@ -28,7 +31,8 @@
                         let msg = {
                             cmd: null,
                             id: null,
-                            pass: null
+                            pass: null,
+                            extra: null
 
                         };
                         msg.id = turtid.value;
@@ -69,6 +73,25 @@
                             console.log(JSON.stringify(msg));
                         }
 
+                        Place.onclick = function () {
+                            msg.cmd = "turtle.placeDown()"
+                            socket.send(JSON.stringify(msg));
+                            console.log(JSON.stringify(msg));
+                        }
+
+                        Break.onclick = function () {
+                            msg.cmd = "turtle.digDown()"
+                            socket.send(JSON.stringify(msg));
+
+                            console.log(JSON.stringify(msg));
+                        }
+
+                        Attack.onclick = function () {
+                            msg.cmd = "turtle.attackDown()"
+                            socket.send(JSON.stringify(msg));
+                            console.log(JSON.stringify(msg));
+                        }
+
                         dis.onclick = function () {
                             socket.close(); 
                             constat.innerHTML = "Disconnected";  
@@ -83,6 +106,10 @@
     <body>
         <div id="center">
         <h1>Turtle Control Page</h1>
+        <button id = "place">Place</button>
+        <button id = "break">Break</button>
+        <button id= "attack">Attack</button>
+        <br>
         <button id="u">Up</button>
         <button id="f">Forward</button>
         <button id="d">Down</button>
