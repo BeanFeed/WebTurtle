@@ -24,7 +24,6 @@ unSafeSocket.on('message',function message(msg){
     if (!sendSite.fromWss){
     sendSite.fromWss = true;
     wss.broadcast(JSON.stringify(sendSite));
-    console.log("Sent Data");
     }
 });
 
