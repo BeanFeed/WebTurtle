@@ -28,25 +28,26 @@ function RecCMD()
 end
 print(err)
 
-function Inv()
+function SendCMD()
     while ws do
-    os.sleep(5)
-    local inv = {}
-    for i = 1, 16 do
-        if turtle.getItemDetail(i) == nil then
-            inv["slot" .. i] = {count = 0, name = "minecraft:Blank"}
-        else
-            inv["slot" .. i] = turtle.getItemDetail(i)
+        os.sleep(0.5)
+        local SendToSocket = {}
+        local inv = {}
+        for i = 1, 16 do
+            if turtle.getItemDetail(i) == nil then
+                inv["slot" .. i] = {name = "minecraft:Blank", count = 0}
+            else
+                inv["slot" .. i] = turtle.getItemDetail(i)
+            end
         end
-    end
-    inv.fromWss = false
-    inv.log = false
-    --print(textutils.serialise(inv))
-    inv = textutils.serialiseJSON(inv)
-    ws.send(inv)
+        SendToSocket.fromWss = false
+        SendToSocket.log = false
+        SendToSocket["Inventory"] = inv
+        SendToSocket = textutils.serialiseJSON(SendToSocket)
+        ws.send(SendToSocket)
     end
 end
 
 while ws do
-    parallel.waitForAll(RecCMD,Inv)
+    parallel.waitForAll(RecCMD,SendCMD)
 end
