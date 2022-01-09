@@ -33,7 +33,11 @@ function Inv()
     os.sleep(5)
     local inv = {}
     for i = 1, 16 do
-        inv["slot" .. i] = turtle.getItemDetail(i)
+        if turtle.getItemDetail(i) == nil then
+            inv["slot" .. i] = {count = 0, name = "minecraft:Blank"}
+        else
+            inv["slot" .. i] = turtle.getItemDetail(i)
+        end
     end
     inv.fromWss = false
     inv.log = false
