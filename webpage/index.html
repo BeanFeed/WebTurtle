@@ -15,7 +15,10 @@
                     const constat = document.getElementById("constat");
                     const Up = document.getElementById("u");
                     const Down = document.getElementById("d");
-                
+                    const Place = document.getElementById("place");
+                    const Break = document.getElementById("break");
+                    const Attack = document.getElementById("attack");
+
                     con.onclick = function(){
                         let conurl = urll.value;
                         if (conurl == null) return
@@ -28,11 +31,18 @@
                         let msg = {
                             cmd: null,
                             id: null,
-                            pass: null
+                            pass: null,
+                            extra: null,
+                            fromWss: false
 
                         };
                         msg.id = turtid.value;
                         msg.pass = turtpass.value;
+
+                        socket.onmessage = function (msg){
+                            console.log(msg)
+                            console.log(msg.data)
+                        }
 
                         Forward.onclick = function(){
                             msg.cmd = "turtle.forward()"
@@ -69,9 +79,28 @@
                             console.log(JSON.stringify(msg));
                         }
 
+                        Place.onclick = function () {
+                            msg.cmd = "turtle.placeDown()"
+                            socket.send(JSON.stringify(msg));
+                            console.log(JSON.stringify(msg));
+                        }
+
+                        Break.onclick = function () {
+                            msg.cmd = "turtle.digDown()"
+                            socket.send(JSON.stringify(msg));
+
+                            console.log(JSON.stringify(msg));
+                        }
+
+                        Attack.onclick = function () {
+                            msg.cmd = "turtle.attackDown()"
+                            socket.send(JSON.stringify(msg));
+                            console.log(JSON.stringify(msg));
+                        }
+
                         dis.onclick = function () {
                             socket.close(); 
-                            constat.innerHTML = "Disconnected";  
+                            constat.innerHTML = "Disconnected";
                         }
                     }  
                 }
@@ -83,6 +112,10 @@
     <body>
         <div id="center">
         <h1>Turtle Control Page</h1>
+        <button id = "place">Place</button>
+        <button id = "break">Break</button>
+        <button id= "attack">Attack</button>
+        <br>
         <button id="u">Up</button>
         <button id="f">Forward</button>
         <button id="d">Down</button>
@@ -106,5 +139,40 @@
         <p id = "constat">Disconnected</p>
         </div>
 
+
+        <div>
+            <h1>Inventory</h1>
+            <table style="border-collapse: collapse;" background="resources/Inventory.png" class="inv">
+                <tr class = "one">
+                    <td style = "padding-left: 4.4px; padding-right: 0px;" class = "r1"><img class = "slot" id = "slot1" src="resources/Blank.png"></td>
+                    <td class = "r1"><img class = "slot" id = "slot2" src="resources/Blank.png"></td>
+                    <td class = "r1"><img class = "slot" id = "slot3" src="resources/Blank.png"></td>
+                    <td class = "r1"><img class = "slot" id = "slot4" src="resources/Blank.png"></td>
+                </tr>
+
+                <tr>
+                    <td style = "padding-left: 4.4px; padding-right: 0px;" class = "r2"><img class = "slot" id = "slot5" src="resources/Blank.png"></td>
+                    <td class = "r2"><img class = "slot" id = "slot6" src="resources/Blank.png"></td>
+                    <td class = "r2"><img class = "slot" id = "slot7" src="resources/Blank.png"></td>
+                    <td class = "r2"><img class = "slot" id = "slot8" src="resources/Blank.png"></td>
+                </tr>
+
+                <tr>
+                    <td style = "padding-left: 4.4px; padding-right: 0px;" class = "r3"><img class = "slot" id = "slot9" src="resources/Blank.png"></td>
+                    <td class = "r3"><img class = "slot" id = "slot10" src="resources/Blank.png"></td>
+                    <td class = "r3"><img class = "slot" id = "slot11" src="resources/Blank.png"></td>
+                    <td class = "r3"><img class = "slot" id = "slot12" src="resources/Blank.png"></td>
+                </tr>
+
+                <tr>
+                    <td style = "padding-left: 4.4px; padding-right: 0px;" class = "r4"><img class = "slot" id = "slot13" src="resources/Blank.png"></td>
+                    <td class = "r4"><img class = "slot" id = "slot14" src="resources/Blank.png"></td>
+                    <td class = "r4"><img class = "slot" id = "slot15" src="resources/Blank.png"></td>
+                    <td class = "r4"><img class = "slot" id = "slot16" src="resources/Blank.png"></td>
+                </tr>
+
+            </table>
+
+        </div>
     </body>
 </html>
