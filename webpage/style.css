@@ -1,3 +1,55 @@
 #center {
     text-align: center;
 }
+
+/*
+.one{
+    vertical-align: top;
+    padding-top: 3px;
+    padding-left: 3px;
+    padding-bottom: 0px;
+}
+
+.two {
+    padding-top: 3px;
+}
+
+.four {
+    padding-top: 3px;
+}
+
+.five {
+    padding-top: 0px;
+}
+
+*/
+.inv {
+    height: 345px;
+    width: 345px;
+    
+}
+
+td {
+    height: 80px;
+    width: 80px;
+
+}
+
+img.slot {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+
+}
+
+.r1 {
+    padding-top: 4.7px;
+}
+
+.r2 {
+    padding-bottom: 0px;
+}
+
+.r3 {
+    padding-bottom: 0px;
+}
