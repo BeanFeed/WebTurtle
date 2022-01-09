@@ -18,11 +18,7 @@
                     const Place = document.getElementById("place");
                     const Break = document.getElementById("break");
                     const Attack = document.getElementById("attack");
-<<<<<<< HEAD
                     var message;
-=======
-
->>>>>>> a915cd853583827fbaab94d33acf8015fdb3f694
                     con.onclick = function(){
                         let conurl = urll.value;
                         if (conurl == null) return
@@ -37,28 +33,17 @@
                             id: null,
                             pass: null,
                             extra: null,
-<<<<<<< HEAD
                             fromWss: false,
                             log: true
-=======
-                            fromWss: false
->>>>>>> a915cd853583827fbaab94d33acf8015fdb3f694
 
                         };
                         msg.id = turtid.value;
                         msg.pass = turtpass.value;
 
-<<<<<<< HEAD
                         socket.addEventListener("message", msg => {
                             console.log(JSON.parse(msg.data));
 
                         });
-=======
-                        socket.onmessage = function (msg){
-                            console.log(msg)
-                            console.log(msg.data)
-                        }
->>>>>>> a915cd853583827fbaab94d33acf8015fdb3f694
 
                         Forward.onclick = function(){
                             msg.cmd = "turtle.forward()"
