@@ -60,6 +60,7 @@
                         slot15.src = "resources/textures/" + Inv.slot15.name.replace('minecraft:','') + ".png"
                         slot16.src = "resources/textures/" + Inv.slot16.name.replace('minecraft:','') + ".png"
                         Item.innerHTML = "Item: " +Inv["slot" + curSlot.toString()].name + " x" + Inv["slot" + curSlot.toString()].count.toString();
+                        SelSlot.innerHTML = "Slot Selected: " + curSlot.toString();
                     }
                     var message;
                     con.onclick = function(){
@@ -131,112 +132,112 @@
 
                         slot1.onclick = function () {
                             sendCMD("turtle.select(1)");
-                            SelSlot.innerHTML = "Slot Selected: 1"
+                            
                             //Item.innerHTML = "Item: " +Inv.slot1.name + " x" + Inv.slot1.count.toString();
                             curSlot = 1;
                         }
                         
                         slot2.onclick = function () {
                             sendCMD("turtle.select(2)");
-                            SelSlot.innerHTML = "Slot Selected: 2"
+                            
                             //Item.innerHTML = "Item: " +Inv.slot2.name + " x" + Inv.slot2.count.toString();
                             curSlot = 2;
                         }
                         
                         slot3.onclick = function () {
                             sendCMD("turtle.select(3)");
-                            SelSlot.innerHTML = "Slot Selected: 3"
+                            
                             //Item.innerHTML = "Item: " +Inv.slot3.name + " x" + Inv.slot3.count.toString();
                             curSlot = 3;
                         }
 
                         slot4.onclick = function () {
                             sendCMD("turtle.select(4)");
-                            SelSlot.innerHTML = "Slot Selected: 4"
+                            
                             //Item.innerHTML = "Item: " +Inv.slot4.name + " x" + Inv.slot4.count.toString();
                             curSlot = 4;
                         }
                         
                         slot5.onclick = function () {
                             sendCMD("turtle.select(5)");
-                            SelSlot.innerHTML = "Slot Selected: 5"
+                            
                             //Item.innerHTML = "Item: " +Inv.slot5.name + " x" + Inv.slot5.count.toString();
                             curSlot = 5;
                         }
                       
                         slot6.onclick = function () {
                             sendCMD("turtle.select(6)");
-                            SelSlot.innerHTML = "Slot Selected: 6"
+                            
                             curSlot = 6;
                             //Item.innerHTML = "Item: " +Inv.slot6.name + " x" + Inv.slot6.count.toString();
                         }
                         
                         slot7.onclick = function () {
                             sendCMD("turtle.select(7)");
-                            SelSlot.innerHTML = "Slot Selected: 7"
+                            
                             curSlot = 7;
                             //Item.innerHTML = "Item: " +Inv.slot7.name + " x" + Inv.slot7.count.toString();
                         }
                         
                         slot8.onclick = function () {
                             sendCMD("turtle.select(8)");
-                            SelSlot.innerHTML = "Slot Selected: 8"
+                            
                             curSlot = 8;
                             //Item.innerHTML = "Item: " +Inv.slot8.name + " x" + Inv.slot8.count.toString();
                         }
                         
                         slot9.onclick = function () {
                             sendCMD("turtle.select(9)");
-                            SelSlot.innerHTML = "Slot Selected: 9"
+                            
                             curSlot = 9;
                             //Item.innerHTML = "Item: " +Inv.slot9.name + " x" + Inv.slot9.count.toString();
                         }
                         
                         slot10.onclick = function () {
                             sendCMD("turtle.select(10)");
-                            SelSlot.innerHTML = "Slot Selected: 10"
+                            1
                             curSlot = 10;
                             //Item.innerHTML = "Item: " +Inv.slot10.name + " x" + Inv.slot10.count.toString();
                         }
                         
                         slot11.onclick = function () {
                             sendCMD("turtle.select(11)");
-                            SelSlot.innerHTML = "Slot Selected: 11"
+                            
                             curSlot = 11;
                             //Item.innerHTML = "Item: " +Inv.slot11.name + " x" + Inv.slot11.count.toString();
                         }
                         
                         slot12.onclick = function () {
                             sendCMD("turtle.select(12)");
-                            SelSlot.innerHTML = "Slot Selected: 12"
+                            
                             curSlot = 12;
                             //Item.innerHTML = "Item: " +Inv.slot12.name + " x" + Inv.slot12.count.toString();
                         }
                         
                         slot13.onclick = function () {
                             sendCMD("turtle.select(13)");
-                            SelSlot.innerHTML = "Slot Selected: 13"
+                            
                             curSlot = 13;
                             //Item.innerHTML = "Item: " +Inv.slot13.name + " x" + Inv.slot13.count.toString();
                         }
                         
                         slot14.onclick = function () {
                             sendCMD("turtle.select(14)");
-                            SelSlot.innerHTML = "Slot Selected: 14"
+                            
                             curSlot = 14;
                             //Item.innerHTML = "Item: " +Inv.slot14.name + " x" + Inv.slot14.count.toString();
                         }
                         
                         slot15.onclick = function () {
                             sendCMD("turtle.select(15)");
-                            SelSlot.innerHTML = "Slot Selected: 15"
+                            
                             curSlot = 15;
                             //Item.innerHTML = "Item: " +Inv.slot15.name + " x" + Inv.slot15.count.toString();
                         }
                         
                         slot16.onclick = function () {
                             sendCMD("turtle.select(16)");
-                            SelSlot.innerHTML = "Slot Selected: 16"
+                            
                             curSlot = 16;
                             //Item.innerHTML = "Item: " +Inv.slot16.name + " x" + Inv.slot16.count.toString();
                         }
@@ -283,11 +284,11 @@
         </div>
 
 
-        <div>
+        <div style = "float:left;">
             <h1>Inventory</h1>
             <h3 id = "SelSlot">Slot Selected: 1</h3>
             <h3 id = "ItDe">Item: </h3>
-
+            
             <table style="border-collapse: collapse;" background="resources/Inventory.png" class="inv">
                 <tr class = "one">
                     <td style = "padding-left: 4.4px; padding-right: 0px;" class = "r1"><img class = "slot" id = "slot1" src="resources/Blank.png"></td>
@@ -318,7 +319,38 @@
                 </tr>
 
             </table>
+            
+        </div>
+        
+        <div style = "float: right;">
+            <h1 style = "text-align:center;">GPS</h1>
+            <h3 style = "text-align: center;">|X: 0| Y: 0| Z: 0|</h3>
+            <br>
+            <h1>Surrounding Blocks</h1>
+            <br>
+            <br>
+            <br>
+            <br>
+            <table style="border-collapse: collapse;" background="resources/SurBlocksGui.png" class="SurBlock">
+                <tr class = "one">
+                    <td style = "padding-left: 4.4px; padding-right: 0px;" class = "r1"><img class = "slot" src="resources/None.png"></td>
+                    <td class = "r1"><img class = "slot" id = "surtop" src="resources/Blank.png"></td>
+                    <td class = "r1"><img class = "slot" src="resources/None.png"></td>
+                </tr>
 
+                <tr>
+                    <td style = "padding-left: 4.4px; padding-right: 0px;" class = "r2"><img class = "slot" id = "surleft" src="resources/Blank.png"></td>
+                    <td class = "r2"><img class = "slot" id = "surforward" src="resources/Blank.png"></td>
+                    <td class = "r2"><img class = "slot" id = "surright" src="resources/Blank.png"></td>
+                </tr>
+
+                <tr>
+                    <td style = "padding-left: 4.4px; padding-right: 0px;" class = "r3"><img class = "slot" id = "slot9" src="resources/None.png"></td>
+                    <td class = "r3"><img class = "slot" id = "surbot" src="resources/Blank.png"></td>
+                    <td class = "r3"><img class = "slot" src="resources/None.png"></td>
+                </tr>
+
+            </table>
         </div>
     </body>
 </html>

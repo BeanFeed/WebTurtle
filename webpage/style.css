@@ -53,3 +53,17 @@ img.slot {
 .r3 {
     padding-bottom: 0px;
 }
+
+img.slot2 {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    padding-left:0px;
+    padding-top: 0px;
+    padding-bottom: 0;
+}
+
+.SurBlock {
+    height: 260px;
+    width: 260px;
+}
