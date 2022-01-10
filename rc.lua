@@ -13,18 +13,19 @@ end
 
 
 function RecCMD()
+    while ws do
     local args, x = ws.receive()
+    if args ~= nil then
     args = textutils.unserialiseJSON(args)
     if args.id == id and args.pass == pass then
         print(textutils.serialise(args))
         print(" ")
-        print("ID: "..args.id.." Pass: "..args.pass.." Cmd: "..args.cmd)
-        if args.extra ~= nil then
-            
-        end
+        print("ID: "..args.id.." Pass: "..args.pass.." Cmd: "..args.cmd)    
         local func = loadstring(args.cmd)
         func()
     end
+end
+end
 end
 print(err)
 
