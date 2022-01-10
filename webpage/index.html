@@ -18,8 +18,11 @@
                     const Place = document.getElementById("place");
                     const Break = document.getElementById("break");
                     const Attack = document.getElementById("attack");
+                    const Item = document.getElementById("ItDe");
+                    const SelSlot = document.getElementById("SelSlot");
                     var recMessage;
-
+                    var Inv;
+                    var curSlot = 1;
                     //Item Slot Variables
                     const slot1 = document.getElementById("slot1");
                     const slot2 = document.getElementById("slot2");
@@ -56,7 +59,7 @@
                         slot14.src = "resources/textures/" + Inv.slot14.name.replace('minecraft:','') + ".png"
                         slot15.src = "resources/textures/" + Inv.slot15.name.replace('minecraft:','') + ".png"
                         slot16.src = "resources/textures/" + Inv.slot16.name.replace('minecraft:','') + ".png"
-                        
+                        Item.innerHTML = "Item: " +Inv["slot" + curSlot.toString()].name + " x" + Inv["slot" + curSlot.toString()].count.toString();
                     }
                     var message;
                     con.onclick = function(){
@@ -73,72 +76,171 @@
                             id: null,
                             pass: null,
                             extra: null,
-                            fromWss: false,
+                            fromWss: true,
                             log: true
 
                         };
                         msg.id = turtid.value;
                         msg.pass = turtpass.value;
 
+                        function sendCMD(commd){
+                            msg.cmd = commd
+                            socket.send(JSON.stringify(msg));
+                            console.log(JSON.stringify(msg));
+                        }
                         socket.addEventListener("message", msg => {
                             recMessage = JSON.parse(msg.data);
                             UpdateInv();
+                            
                         });
 
                         Forward.onclick = function(){
-                            msg.cmd = "turtle.forward()"
-                            socket.send(JSON.stringify(msg));
-                            console.log(JSON.stringify(msg));
+                            sendCMD("turtle.forward()");
                         }
                         Back.onclick = function () {
-                            msg.cmd = "turtle.back()"
-                            socket.send(JSON.stringify(msg));
-                            console.log(JSON.stringify(msg));
+                            sendCMD("turtle.back()");
                         }
                         
                         Left.onclick = function () {
-                            msg.cmd = "turtle.turnLeft()"
-                            socket.send(JSON.stringify(msg));
-                            console.log(JSON.stringify(msg));   
+                            sendCMD("turtle.turnLeft()");   
                         }
                         
                         Right.onclick = function () {
-                            msg.cmd = "turtle.turnRight()"
-                            socket.send(JSON.stringify(msg));
-                            console.log(JSON.stringify(msg));  
+                            sendCMD("turtle.turnRight()");  
                         }
                         
                         Down.onclick = function () {
-                            msg.cmd = "turtle.down()"
-                            socket.send(JSON.stringify(msg));
-                            console.log(JSON.stringify(msg));
+                            sendCMD("turtle.down()");
                         }
 
                         Up.onclick = function () {
-                            msg.cmd = "turtle.up()"
-                            socket.send(JSON.stringify(msg));
-                            console.log(JSON.stringify(msg));
+                            sendCMD("turtle.up()");
                         }
 
                         Place.onclick = function () {
-                            msg.cmd = "turtle.placeDown()"
-                            socket.send(JSON.stringify(msg));
-                            console.log(JSON.stringify(msg));
+                            sendCMD("turtle.placeDown()");
                         }
 
                         Break.onclick = function () {
-                            msg.cmd = "turtle.digDown()"
-                            socket.send(JSON.stringify(msg));
-
-                            console.log(JSON.stringify(msg));
+                            sendCMD("turtle.digDown()");
                         }
 
                         Attack.onclick = function () {
-                            msg.cmd = "turtle.attackDown()"
-                            socket.send(JSON.stringify(msg));
-                            console.log(JSON.stringify(msg));
+                            sendCMD("turtle.attackDown()");
                         }
 
+                        slot1.onclick = function () {
+                            sendCMD("turtle.select(1)");
+                            SelSlot.innerHTML = "Slot Selected: 1"
+                            //Item.innerHTML = "Item: " +Inv.slot1.name + " x" + Inv.slot1.count.toString();
+                            curSlot = 1;
+                        }
+                        
+                        slot2.onclick = function () {
+                            sendCMD("turtle.select(2)");
+                            SelSlot.innerHTML = "Slot Selected: 2"
+                            //Item.innerHTML = "Item: " +Inv.slot2.name + " x" + Inv.slot2.count.toString();
+                            curSlot = 2;
+                        }
+                        
+                        slot3.onclick = function () {
+                            sendCMD("turtle.select(3)");
+                            SelSlot.innerHTML = "Slot Selected: 3"
+                            //Item.innerHTML = "Item: " +Inv.slot3.name + " x" + Inv.slot3.count.toString();
+                            curSlot = 3;
+                        }
+
+                        slot4.onclick = function () {
+                            sendCMD("turtle.select(4)");
+                            SelSlot.innerHTML = "Slot Selected: 4"
+                            //Item.innerHTML = "Item: " +Inv.slot4.name + " x" + Inv.slot4.count.toString();
+                            curSlot = 4;
+                        }
+                        
+                        slot5.onclick = function () {
+                            sendCMD("turtle.select(5)");
+                            SelSlot.innerHTML = "Slot Selected: 5"
+                            //Item.innerHTML = "Item: " +Inv.slot5.name + " x" + Inv.slot5.count.toString();
+                            curSlot = 5;
+                        }
+                      
+                        slot6.onclick = function () {
+                            sendCMD("turtle.select(6)");
+                            SelSlot.innerHTML = "Slot Selected: 6"
+                            curSlot = 6;
+                            //Item.innerHTML = "Item: " +Inv.slot6.name + " x" + Inv.slot6.count.toString();
+                        }
+                        
+                        slot7.onclick = function () {
+                            sendCMD("turtle.select(7)");
+                            SelSlot.innerHTML = "Slot Selected: 7"
+                            curSlot = 7;
+                            //Item.innerHTML = "Item: " +Inv.slot7.name + " x" + Inv.slot7.count.toString();
+                        }
+                        
+                        slot8.onclick = function () {
+                            sendCMD("turtle.select(8)");
+                            SelSlot.innerHTML = "Slot Selected: 8"
+                            curSlot = 8;
+                            //Item.innerHTML = "Item: " +Inv.slot8.name + " x" + Inv.slot8.count.toString();
+                        }
+                        
+                        slot9.onclick = function () {
+                            sendCMD("turtle.select(9)");
+                            SelSlot.innerHTML = "Slot Selected: 9"
+                            curSlot = 9;
+                            //Item.innerHTML = "Item: " +Inv.slot9.name + " x" + Inv.slot9.count.toString();
+                        }
+                        
+                        slot10.onclick = function () {
+                            sendCMD("turtle.select(10)");
+                            SelSlot.innerHTML = "Slot Selected: 10"
+                            curSlot = 10;
+                            //Item.innerHTML = "Item: " +Inv.slot10.name + " x" + Inv.slot10.count.toString();
+                        }
+                        
+                        slot11.onclick = function () {
+                            sendCMD("turtle.select(11)");
+                            SelSlot.innerHTML = "Slot Selected: 11"
+                            curSlot = 11;
+                            //Item.innerHTML = "Item: " +Inv.slot11.name + " x" + Inv.slot11.count.toString();
+                        }
+                        
+                        slot12.onclick = function () {
+                            sendCMD("turtle.select(12)");
+                            SelSlot.innerHTML = "Slot Selected: 12"
+                            curSlot = 12;
+                            //Item.innerHTML = "Item: " +Inv.slot12.name + " x" + Inv.slot12.count.toString();
+                        }
+                        
+                        slot13.onclick = function () {
+                            sendCMD("turtle.select(13)");
+                            SelSlot.innerHTML = "Slot Selected: 13"
+                            curSlot = 13;
+                            //Item.innerHTML = "Item: " +Inv.slot13.name + " x" + Inv.slot13.count.toString();
+                        }
+                        
+                        slot14.onclick = function () {
+                            sendCMD("turtle.select(14)");
+                            SelSlot.innerHTML = "Slot Selected: 14"
+                            curSlot = 14;
+                            //Item.innerHTML = "Item: " +Inv.slot14.name + " x" + Inv.slot14.count.toString();
+                        }
+                        
+                        slot15.onclick = function () {
+                            sendCMD("turtle.select(15)");
+                            SelSlot.innerHTML = "Slot Selected: 15"
+                            curSlot = 15;
+                            //Item.innerHTML = "Item: " +Inv.slot15.name + " x" + Inv.slot15.count.toString();
+                        }
+                        
+                        slot16.onclick = function () {
+                            sendCMD("turtle.select(16)");
+                            SelSlot.innerHTML = "Slot Selected: 16"
+                            curSlot = 16;
+                            //Item.innerHTML = "Item: " +Inv.slot16.name + " x" + Inv.slot16.count.toString();
+                        }
+                        
                         dis.onclick = function () {
                             socket.close(); 
                             constat.innerHTML = "Disconnected";
@@ -183,6 +285,9 @@
 
         <div>
             <h1>Inventory</h1>
+            <h3 id = "SelSlot">Slot Selected: 1</h3>
+            <h3 id = "ItDe">Item: </h3>
+
             <table style="border-collapse: collapse;" background="resources/Inventory.png" class="inv">
                 <tr class = "one">
                     <td style = "padding-left: 4.4px; padding-right: 0px;" class = "r1"><img class = "slot" id = "slot1" src="resources/Blank.png"></td>
