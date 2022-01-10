@@ -21,9 +21,11 @@ unSafeSocket = new WebSocket("ws://localhost:8080");
 
 unSafeSocket.on('message',function message(msg){
     let sendSite = JSON.parse(msg);
-    if (!sendSite.fromWss){
+    if (sendSite.fromWss == false){
     sendSite.fromWss = true;
     wss.broadcast(JSON.stringify(sendSite));
+    } else {
+        console.log('yes');
     }
 });
 
@@ -31,7 +33,7 @@ wss.on('connection', function connection(ws){
     console.log('connected');
     ws.on('message',function(msg){
         let newMes = JSON.parse(msg);
-        console.log(newMes);
+        //console.log(newMes);
         unSafeSocket.send(JSON.stringify(newMes));
     });
 });
@@ -57,9 +59,7 @@ wsss.on('connection', function connection(ws){
         if (message.log) {
             console.log(message);
         }
-        if (!message.Inventory){
         wsss.broadcast(msg);
-        }
     });
 });
 
