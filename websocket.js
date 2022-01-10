@@ -57,8 +57,9 @@ wsss.on('connection', function connection(ws){
         if (message.log) {
             console.log(message);
         }
-        
+        if (!message.Inventory){
         wsss.broadcast(msg);
+        }
     });
 });
 
