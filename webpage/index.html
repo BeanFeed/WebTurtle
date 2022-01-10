@@ -18,6 +18,46 @@
                     const Place = document.getElementById("place");
                     const Break = document.getElementById("break");
                     const Attack = document.getElementById("attack");
+                    var recMessage;
+
+                    //Item Slot Variables
+                    const slot1 = document.getElementById("slot1");
+                    const slot2 = document.getElementById("slot2");
+                    const slot3 = document.getElementById("slot3");
+                    const slot4 = document.getElementById("slot4");
+                    const slot5 = document.getElementById("slot5");
+                    const slot6 = document.getElementById("slot6");
+                    const slot7 = document.getElementById("slot7");
+                    const slot8 = document.getElementById("slot8");
+                    const slot9 = document.getElementById("slot9");
+                    const slot10 = document.getElementById("slot10");
+                    const slot11 = document.getElementById("slot11");
+                    const slot12 = document.getElementById("slot12");
+                    const slot13 = document.getElementById("slot13");
+                    const slot14 = document.getElementById("slot14");
+                    const slot15 = document.getElementById("slot15");
+                    const slot16 = document.getElementById("slot16");
+                    
+                    function UpdateInv() {
+                        Inv = recMessage.Inventory;
+                        slot1.src = "resources/textures/" + Inv.slot1.name.replace('minecraft:','') + ".png"
+                        slot2.src = "resources/textures/" + Inv.slot2.name.replace('minecraft:','') + ".png"
+                        slot3.src = "resources/textures/" + Inv.slot3.name.replace('minecraft:','') + ".png"
+                        slot4.src = "resources/textures/" + Inv.slot4.name.replace('minecraft:','') + ".png"
+                        slot5.src = "resources/textures/" + Inv.slot5.name.replace('minecraft:','') + ".png"
+                        slot6.src = "resources/textures/" + Inv.slot6.name.replace('minecraft:','') + ".png"
+                        slot7.src = "resources/textures/" + Inv.slot7.name.replace('minecraft:','') + ".png"
+                        slot8.src = "resources/textures/" + Inv.slot8.name.replace('minecraft:','') + ".png"
+                        slot9.src = "resources/textures/" + Inv.slot9.name.replace('minecraft:','') + ".png"
+                        slot10.src = "resources/textures/" + Inv.slot10.name.replace('minecraft:','') + ".png"
+                        slot11.src = "resources/textures/" + Inv.slot11.name.replace('minecraft:','') + ".png"
+                        slot12.src = "resources/textures/" + Inv.slot12.name.replace('minecraft:','') + ".png"
+                        slot13.src = "resources/textures/" + Inv.slot13.name.replace('minecraft:','') + ".png"
+                        slot14.src = "resources/textures/" + Inv.slot14.name.replace('minecraft:','') + ".png"
+                        slot15.src = "resources/textures/" + Inv.slot15.name.replace('minecraft:','') + ".png"
+                        slot16.src = "resources/textures/" + Inv.slot16.name.replace('minecraft:','') + ".png"
+                        
+                    }
                     var message;
                     con.onclick = function(){
                         let conurl = urll.value;
@@ -41,8 +81,8 @@
                         msg.pass = turtpass.value;
 
                         socket.addEventListener("message", msg => {
-                            console.log(JSON.parse(msg.data));
-
+                            recMessage = JSON.parse(msg.data);
+                            UpdateInv();
                         });
 
                         Forward.onclick = function(){
