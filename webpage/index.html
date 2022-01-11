@@ -124,11 +124,14 @@
                         });
 
                         function dirCMD(cmd){
-                            msg.cmd = commd
-                            //if (!(document.getElementById('doScan2').checked) && !(document.getElementById('doScan1').checked)) {
-                            //    document.getElementByName('doScan').value ='yes'
-                            //}
-                            //msg.doScan = document.getElementById('doScan').value
+                            if (document.getElementById('dirCMDup').checked) {
+                                cmd = cmd + "Up()"
+                            } else if (document.getElementById('dirCMDfront').checked) {
+                                cmd = cmd + "()"
+                            } else if (document.getElementById('dirCMDdown')) {
+                                cmd = cmd + "Down()"
+                            }
+                            msg.cmd = cmd
                             socket.send(JSON.stringify(msg));
                             console.log(JSON.stringify(msg));   
                         }
@@ -157,15 +160,15 @@
                         }
 
                         Place.onclick = function () {
-                            sendCMD("turtle.placeDown()");
+                            dirCMD("turtle.place");
                         }
 
                         Break.onclick = function () {
-                            sendCMD("turtle.digDown()");
+                            dirCMD("turtle.dig");
                         }
 
                         Attack.onclick = function () {
-                            sendCMD("turtle.attackDown()");
+                            dirCMD("turtle.attack");
                         }
 
                         slot1.onclick = function () {
@@ -351,18 +354,28 @@
             <br>
             
 
-            Do Block Scan:
+            <label>Do Block Scan:</label>
             <br>
             <input checked type = "radio" id = "doScan1" name = "doScan" value = "yes"><label>True</label>
             <br>
             <input type = "radio" id = "doScan2" name = "doScan" value = "no"> <label>False</label>
             <br>
-            Turtle Id:
+            <label>Place/Break/Attack Direction:</label>
+            <br>
+            <div>
+            <input name = "dirCMD" type = "radio" id = "dirCMDup" style = "text-align: left;"><label>Up</label>
+            <br>
+            <input name = "dirCMD" type = "radio" id = "dirCMDfront"><label>Front</label>
+            <br>
+            <input checked name = "dirCMD" type = "radio" id = "dirCMDdown"><label>Down</label>
+            </div>
+            <br>
+            <label>Turtle Id:</label>
             <input type="number" id="turtid">
             <br>
-            Turtle password: <input type = "text" id = "turtpass">
+            <label>Turtle password: </label><input type = "text" id = "turtpass">
             <br>
-            Url: <input type="url" id="url">
+            <label>Url: </label><input type="url" id="url">
             <button id="con">Connect</button>
             <button id="dis">Disconnect</button>
             <br>
