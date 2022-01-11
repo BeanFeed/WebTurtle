@@ -20,6 +20,13 @@
                     const Attack = document.getElementById("attack");
                     const Item = document.getElementById("ItDe");
                     const SelSlot = document.getElementById("SelSlot");
+                    const gps = document.getElementById("gps");
+                    const surFront = document.getElementById("surFront");
+                    const surUp = document.getElementById("surUp");
+                    const surDown = document.getElementById("surDown");
+                    const surLeft = document.getElementById("surLeft");
+                    const surRight = document.getElementById("surRight");
+                    
                     var recMessage;
                     var Inv;
                     var curSlot = 1;
@@ -42,25 +49,39 @@
                     const slot16 = document.getElementById("slot16");
                     
                     function UpdateInv() {
-                        Inv = recMessage.Inventory;
-                        slot1.src = "resources/textures/" + Inv.slot1.name.replace('minecraft:','') + ".png"
-                        slot2.src = "resources/textures/" + Inv.slot2.name.replace('minecraft:','') + ".png"
-                        slot3.src = "resources/textures/" + Inv.slot3.name.replace('minecraft:','') + ".png"
-                        slot4.src = "resources/textures/" + Inv.slot4.name.replace('minecraft:','') + ".png"
-                        slot5.src = "resources/textures/" + Inv.slot5.name.replace('minecraft:','') + ".png"
-                        slot6.src = "resources/textures/" + Inv.slot6.name.replace('minecraft:','') + ".png"
-                        slot7.src = "resources/textures/" + Inv.slot7.name.replace('minecraft:','') + ".png"
-                        slot8.src = "resources/textures/" + Inv.slot8.name.replace('minecraft:','') + ".png"
-                        slot9.src = "resources/textures/" + Inv.slot9.name.replace('minecraft:','') + ".png"
-                        slot10.src = "resources/textures/" + Inv.slot10.name.replace('minecraft:','') + ".png"
-                        slot11.src = "resources/textures/" + Inv.slot11.name.replace('minecraft:','') + ".png"
-                        slot12.src = "resources/textures/" + Inv.slot12.name.replace('minecraft:','') + ".png"
-                        slot13.src = "resources/textures/" + Inv.slot13.name.replace('minecraft:','') + ".png"
-                        slot14.src = "resources/textures/" + Inv.slot14.name.replace('minecraft:','') + ".png"
-                        slot15.src = "resources/textures/" + Inv.slot15.name.replace('minecraft:','') + ".png"
-                        slot16.src = "resources/textures/" + Inv.slot16.name.replace('minecraft:','') + ".png"
-                        Item.innerHTML = "Item: " +Inv["slot" + curSlot.toString()].name + " x" + Inv["slot" + curSlot.toString()].count.toString();
-                        SelSlot.innerHTML = "Slot Selected: " + curSlot.toString();
+                        console.log(turtid.value);
+                        console.log(turtpass.value);
+                        if ((recMessage.id == turtid.value) && (recMessage.pass == turtpass.value)) {
+                            Inv = recMessage.Inventory;
+                            Gps = recMessage.gps;
+                            surBlocks = recMessage.surBlocks;
+                            console.log(recMessage);
+                            slot1.src = "resources/textures/" + Inv.slot1.name.replace('minecraft:','') + ".png"
+                            slot2.src = "resources/textures/" + Inv.slot2.name.replace('minecraft:','') + ".png"
+                            slot3.src = "resources/textures/" + Inv.slot3.name.replace('minecraft:','') + ".png"
+                            slot4.src = "resources/textures/" + Inv.slot4.name.replace('minecraft:','') + ".png"
+                            slot5.src = "resources/textures/" + Inv.slot5.name.replace('minecraft:','') + ".png"
+                            slot6.src = "resources/textures/" + Inv.slot6.name.replace('minecraft:','') + ".png"
+                            slot7.src = "resources/textures/" + Inv.slot7.name.replace('minecraft:','') + ".png"
+                            slot8.src = "resources/textures/" + Inv.slot8.name.replace('minecraft:','') + ".png"
+                            slot9.src = "resources/textures/" + Inv.slot9.name.replace('minecraft:','') + ".png"
+                            slot10.src = "resources/textures/" + Inv.slot10.name.replace('minecraft:','') + ".png"
+                            slot11.src = "resources/textures/" + Inv.slot11.name.replace('minecraft:','') + ".png"
+                            slot12.src = "resources/textures/" + Inv.slot12.name.replace('minecraft:','') + ".png"
+                            slot13.src = "resources/textures/" + Inv.slot13.name.replace('minecraft:','') + ".png"
+                            slot14.src = "resources/textures/" + Inv.slot14.name.replace('minecraft:','') + ".png"
+                            slot15.src = "resources/textures/" + Inv.slot15.name.replace('minecraft:','') + ".png"
+                            slot16.src = "resources/textures/" + Inv.slot16.name.replace('minecraft:','') + ".png"
+                            Item.innerHTML = "Item: " +Inv["slot" + curSlot.toString()].name + " x" + Inv["slot" + curSlot.toString()].count.toString();
+                            SelSlot.innerHTML = "Slot Selected: " + curSlot.toString();
+                            gps.innerHTML = "|X: " + Gps.x + "| Y: " + Gps.y + "| Z: " + Gps.z + "|"
+                            surFront.src = "resources/textures/" + surBlocks.front.replace('minecraft:','') + ".png"
+                            surUp.src = "resources/textures/" + surBlocks.up.replace('minecraft:','') + ".png"
+                            surDown.src = "resources/textures/" + surBlocks.down.replace('minecraft:','') + ".png"
+                            surLeft.src = "resources/textures/" + surBlocks.left.replace('minecraft:','') + ".png"
+                            surRight.src = "resources/textures/" + surBlocks.right.replace('minecraft:','') + ".png"
+                            
+                        }
                     }
                     var message;
                     con.onclick = function(){
@@ -78,7 +99,8 @@
                             pass: null,
                             extra: null,
                             fromWss: true,
-                            log: true
+                            log: true,
+                            fromTurt: false
 
                         };
                         msg.id = turtid.value;
@@ -254,37 +276,11 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div id="center">
-        <h1>Turtle Control Page</h1>
-        <button id = "place">Place</button>
-        <button id = "break">Break</button>
-        <button id= "attack">Attack</button>
-        <br>
-        <button id="u">Up</button>
-        <button id="f">Forward</button>
-        <button id="d">Down</button>
-        <br>
-        <button id="l">Left</button>
-        <button id="b">Back</button>
-        <button id="r">Right</button>
-        <br>
-
+        <div class = "turtleGui" style = "text-align:center">
         
-        Turtle Id:
-        <input type="number" id="turtid">
-        <br>
-        Turtle password: <input type = "text" id = "turtpass">
-        <br>
-        Url: <input type="text" id="url">
-        <button id="con">Connect</button>
-        <button id="dis">Disconnect</button>
-        <br>
-        Connection Status:
-        <p id = "constat">Disconnected</p>
-        </div>
 
 
-        <div style = "float:left;">
+        <div style = "display: inline-block; vertical-align: middle;">
             <h1>Inventory</h1>
             <h3 id = "SelSlot">Slot Selected: 1</h3>
             <h3 id = "ItDe">Item: </h3>
@@ -322,9 +318,38 @@
             
         </div>
         
-        <div style = "float: right;">
+        <div style = "display: inline-block; padding: 40px; vertical-align: middle;">
+            <h1>Turtle Control Page</h1>
+            <button id = "place">Place</button>
+            <button id = "break">Break</button>
+            <button id= "attack">Attack</button>
+            <br>
+            <button id="u">Up</button>
+            <button id="f">Forward</button>
+            <button id="d">Down</button>
+            <br>
+            <button id="l">Left</button>
+            <button id="b">Back</button>
+            <button id="r">Right</button>
+            <br>
+    
+            
+            Turtle Id:
+            <input type="number" id="turtid">
+            <br>
+            Turtle password: <input type = "text" id = "turtpass">
+            <br>
+            Url: <input type="text" id="url">
+            <button id="con">Connect</button>
+            <button id="dis">Disconnect</button>
+            <br>
+            Connection Status:
+            <p id = "constat">Disconnected</p>
+            </div>
+
+        <div style = "display: inline-block; vertical-align: middle;">
             <h1 style = "text-align:center;">GPS</h1>
-            <h3 style = "text-align: center;">|X: 0| Y: 0| Z: 0|</h3>
+            <h3 style = "text-align: center;" id = "gps">|X: 0| Y: 0| Z: 0|</h3>
             <br>
             <h1>Surrounding Blocks</h1>
             <br>
@@ -334,23 +359,24 @@
             <table style="border-collapse: collapse;" background="resources/SurBlocksGui.png" class="SurBlock">
                 <tr class = "one">
                     <td style = "padding-left: 4.4px; padding-right: 0px;" class = "r1"><img class = "slot" src="resources/None.png"></td>
-                    <td class = "r1"><img class = "slot" id = "surtop" src="resources/Blank.png"></td>
+                    <td class = "r1"><img class = "slot" id = "surUp" src="resources/Blank.png"></td>
                     <td class = "r1"><img class = "slot" src="resources/None.png"></td>
                 </tr>
 
                 <tr>
-                    <td style = "padding-left: 4.4px; padding-right: 0px;" class = "r2"><img class = "slot" id = "surleft" src="resources/Blank.png"></td>
-                    <td class = "r2"><img class = "slot" id = "surforward" src="resources/Blank.png"></td>
-                    <td class = "r2"><img class = "slot" id = "surright" src="resources/Blank.png"></td>
+                    <td style = "padding-left: 4.4px; padding-right: 0px;" class = "r2"><img class = "slot" id = "surLeft" src="resources/Blank.png"></td>
+                    <td class = "r2"><img class = "slot" id = "surFront" src="resources/Blank.png"></td>
+                    <td class = "r2"><img class = "slot" id = "surRight" src="resources/Blank.png"></td>
                 </tr>
 
                 <tr>
                     <td style = "padding-left: 4.4px; padding-right: 0px;" class = "r3"><img class = "slot" id = "slot9" src="resources/None.png"></td>
-                    <td class = "r3"><img class = "slot" id = "surbot" src="resources/Blank.png"></td>
+                    <td class = "r3"><img class = "slot" id = "surDown" src="resources/Blank.png"></td>
                     <td class = "r3"><img class = "slot" src="resources/None.png"></td>
                 </tr>
 
             </table>
+        </div>
         </div>
     </body>
 </html>
