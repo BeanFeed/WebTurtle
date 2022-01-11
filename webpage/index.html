@@ -26,7 +26,7 @@
                     const surDown = document.getElementById("surDown");
                     const surLeft = document.getElementById("surLeft");
                     const surRight = document.getElementById("surRight");
-                    
+                    const dir = document.getElementsByName("direction");
                     var recMessage;
                     var Inv;
                     var curSlot = 1;
@@ -109,10 +109,11 @@
 
                         function sendCMD(commd){
                             msg.cmd = commd
-                            if ((document.getElementById('doScan').value != 'yes') && (document.getElementById('doScan').value != 'no')) {
-                                document.getElementById('doScan').value ='yes'
+                            if (document.getElementById('doScan1').checked) {
+                                msg.doScan = 'yes';
+                            } else if (document.getElementById('doScan2').checked) {
+                                msg.doScan = 'no';
                             }
-                            msg.doScan = document.getElementById('doScan').value
                             socket.send(JSON.stringify(msg));
                             console.log(JSON.stringify(msg));
                         }
@@ -121,6 +122,16 @@
                             UpdateInv();
                             
                         });
+
+                        function dirCMD(cmd){
+                            msg.cmd = commd
+                            //if (!(document.getElementById('doScan2').checked) && !(document.getElementById('doScan1').checked)) {
+                            //    document.getElementByName('doScan').value ='yes'
+                            //}
+                            //msg.doScan = document.getElementById('doScan').value
+                            socket.send(JSON.stringify(msg));
+                            console.log(JSON.stringify(msg));   
+                        }
 
                         Forward.onclick = function(){
                             sendCMD("turtle.forward()");
@@ -272,6 +283,7 @@
                         dis.onclick = function () {
                             socket.close(); 
                             constat.innerHTML = "Disconnected";
+                            console.clear();
                         }
                     }  
                 }
@@ -337,13 +349,13 @@
             <button id="b">Back</button>
             <button id="r">Right</button>
             <br>
-    
+            
+
             Do Block Scan:
-            <input id = "doScan" list = "dooScan">
-            <datalist id = "dooScan">
-                <option value = "yes">
-                <option value = "no">
-            </datalist>
+            <br>
+            <input checked type = "radio" id = "doScan1" name = "doScan" value = "yes"><label>True</label>
+            <br>
+            <input type = "radio" id = "doScan2" name = "doScan" value = "no"> <label>False</label>
             <br>
             Turtle Id:
             <input type="number" id="turtid">
