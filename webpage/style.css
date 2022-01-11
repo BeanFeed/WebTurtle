@@ -70,3 +70,20 @@ img.slot2 {
     height: 260px;
     width: 260px;
 }
+
+button {
+    color: #ffffff;
+    background: #03bafc;
+    border: 0px;
+}
+
+body {
+    background-color: #242424;
+    color: #ffffff;
+}
+
+input {
+    background: #404040;
+    border: 0px;
+    color: #ffffff;
+}
