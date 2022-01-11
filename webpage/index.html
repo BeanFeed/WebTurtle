@@ -100,7 +100,8 @@
                             extra: null,
                             fromWss: true,
                             log: true,
-                            fromTurt: false
+                            fromTurt: false,
+                            doScan: 'yes'
 
                         };
                         msg.id = turtid.value;
@@ -108,6 +109,10 @@
 
                         function sendCMD(commd){
                             msg.cmd = commd
+                            if ((document.getElementById('doScan').value != 'yes') && (document.getElementById('doScan').value != 'no')) {
+                                document.getElementById('doScan').value ='yes'
+                            }
+                            msg.doScan = document.getElementById('doScan').value
                             socket.send(JSON.stringify(msg));
                             console.log(JSON.stringify(msg));
                         }
@@ -333,13 +338,19 @@
             <button id="r">Right</button>
             <br>
     
-            
+            Do Block Scan:
+            <input id = "doScan" list = "dooScan">
+            <datalist id = "dooScan">
+                <option value = "yes">
+                <option value = "no">
+            </datalist>
+            <br>
             Turtle Id:
             <input type="number" id="turtid">
             <br>
             Turtle password: <input type = "text" id = "turtpass">
             <br>
-            Url: <input type="text" id="url">
+            Url: <input type="url" id="url">
             <button id="con">Connect</button>
             <button id="dis">Disconnect</button>
             <br>

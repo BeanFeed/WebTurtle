@@ -74,7 +74,9 @@ function RecCMD()
         else    
             local func = loadstring(args.cmd)
             func()
-            Scan()
+            if args.doScan == 'yes' then
+                Scan()
+            end
         end
     end
 end
