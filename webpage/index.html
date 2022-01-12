@@ -123,6 +123,22 @@
                             
                         });
 
+                        document.addEventListener('keydown',function(event){
+                            if (event.keyCode == 87) {
+                                sendCMD('turtle.forward()');
+                            } else if (event.keyCode == 65) {
+                                sendCMD('turtle.turnLeft()');
+                            } else if (event.keyCode == 83) {
+                                sendCMD('turtle.back()');
+                            } else if ( event.keyCode == 68) {
+                                sendCMD('turtle.turnRight()');
+                            } else if (event.keyCode == 17) {
+                                sendCMD('turtle.down()');
+                            } else if (event.keyCode == 18) {
+                                sendCMD('turtle.up()');
+                            }
+                        });
+
                         function dirCMD(cmd){
                             if (document.getElementById('dirCMDup').checked) {
                                 cmd = cmd + "Up()"
